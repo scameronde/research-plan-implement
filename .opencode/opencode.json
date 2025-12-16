@@ -1,0 +1,135 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "researcher": {
+      "description": "Orchestrates sub-agents to map and document the current codebase state. Synthesizes research reports without making code changes.",
+      "mode": "primary",
+      "temperature": 0.1,
+      "tools": {
+        "bash": true,
+        "read": true,
+        "write": true,
+        "edit": false,
+        "searxng-search": true,
+        "sequential-thinking": true,
+        "context7": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
+      }
+    },
+    "planner": {
+      "description": "Creates detailed technical specifications and implementation plans. Verifies assumptions against live code before planning.",
+      "mode": "primary",
+      "temperature": 0.1,
+      "tools": {
+        "bash": true,
+        "read": true,
+        "write": true,
+        "edit": false,
+        "context7": true,
+        "searxng-search": true,
+        "sequential-thinking": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
+      }
+    },
+    "implementor": {
+      "description": "Executes implementation plans phase-by-phase with strict human checkpoints. Requires a plan before making code changes.",
+      "mode": "primary",
+      "temperature": 0.2,
+      "tools": {
+        "bash": true,
+        "read": true,
+        "write": true,
+        "edit": true,
+        "sequential-thinking": true
+      },
+      "permission": {
+        "edit": "ask",
+        "bash": "ask"
+      }
+    },
+    "codebase-locator": {
+      "description": "Quickly locates files, directories, and code patterns by keyword or name. Use for finding components and understanding structure.",
+      "mode": "subagent",
+      "temperature": 0.0,
+      "tools": {
+        "bash": true,
+        "read": true,
+        "write": false,
+        "edit": false
+      }
+    },
+    "codebase-analyzer": {
+      "description": "Explains how code works by tracing execution paths and data flow. Use for understanding implementation details.",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "tools": {
+        "bash": true,
+        "read": true,
+        "write": false,
+        "edit": false
+      }
+    },
+    "codebase-pattern-finder": {
+      "description": "Finds code examples and usage patterns in the codebase. Use for discovering conventions and how features are typically implemented.",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "tools": {
+        "bash": true,
+        "read": true,
+        "write": false,
+        "edit": false
+      }
+    },
+    "thoughts-locator": {
+      "description": "Searches the thoughts/ directory for historical context, design docs, tickets, and notes. Use for finding project documentation.",
+      "mode": "subagent",
+      "temperature": 0.0,
+      "tools": {
+        "bash": true,
+        "read": true,
+        "write": false,
+        "edit": false
+      }
+    },
+    "thoughts-analyzer": {
+      "description": "Extracts key decisions, specifications, and constraints from historical documents. Use for understanding past decisions.",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "tools": {
+        "bash": true,
+        "read": true,
+        "write": false,
+        "edit": false
+      }
+    },
+    "web-search-researcher": {
+      "description": "Researches external libraries, APIs, and best practices. Validates library usage and finds up-to-date documentation.",
+      "mode": "subagent",
+      "temperature": 0.2,
+      "tools": {
+        "bash": false,
+        "read": false,
+        "write": false,
+        "edit": false,
+        "searxng-search": true,
+        "context7": true
+      }
+    }
+  },
+  "permission": {
+    "bash": "ask",
+    "edit": "ask",
+    "webfetch": "ask"
+  },
+  "tools": {
+    "searxng-search": true,
+    "sequential-thinking": true,
+    "context7": true
+  }
+}
