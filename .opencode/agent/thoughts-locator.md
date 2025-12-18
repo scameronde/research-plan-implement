@@ -3,20 +3,20 @@ description: "Locates documentation, tickets, and notes in the 'thoughts/' direc
 mode: subagent
 temperature: 0.1
 tools:
-  read: true
-  list: true
-  bash: true        # Primary tool (find/grep)
-  sequential-thinking: true # Enabled for synonym reasoning
-  
-  # Disabled
-  write: false
+  bash: true
   edit: false
-  glob: false       # Bash find is better for this specific dir
+  read: true
+  write: false
+  glob: false
   grep: false
+  list: true
+  patch: false
+  todoread: true
+  todowrite: true
+  webfetch: false
   searxng-search: false
+  sequential-thinking: true
   context7: false
-  todoread: false   # Overkill for simple retrieval
-  todowrite: false
 ---
 
 # Thoughts Librarian: Documentation Discovery
@@ -67,4 +67,3 @@ Return a clean, categorized list.
 *   **Synonyms**: If "login" returns nothing, search for "auth", "signin", or "session".
 *   **Personal Folders**: Often contain the most valuable "raw" context.
 *   **Speed**: Do not read full files. Only read headers to confirm relevance.
-

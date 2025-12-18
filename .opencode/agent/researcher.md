@@ -3,28 +3,20 @@ description: "Orchestrates sub-agents to map the codebase. Synthesizes factual d
 mode: primary
 temperature: 0.1
 tools:
-  # Management & Output Tools
+  bash: true
+  edit: false # it is not your job to edit files
   read: true
   write: true
+  glob: false # use Sub-Agent 'codebase-locator' instead
+  grep: false # use Sub-Agent 'codebase-pattern-finder' instead
   list: true
+  patch: false
   todoread: true
   todowrite: true
+  webfetch: false # use Sub-Agent 'web-search-researcher' instead
+  searxng-search: false # use Sub-Agent 'web-search-researcher' instead
   sequential-thinking: true
-  
-  # Worker Tools (DISABLED)
-  glob: false
-  grep: false
-  searxng-search: false
-  context7: false
-  
-  # Sensitive Tools
-  bash: true  
-  edit: false 
-
-permission:
-  edit: deny
-  webfetch: deny
-  bash: ask
+  context7: false # use Sub-Agent 'codebase-analyzer' instead
 ---
 
 # Research Architect: Codebase Mapping & Documentation
@@ -144,4 +136,3 @@ Repeat the same per-claim evidence format.
 - **Don't say**: "The code uses React."
 - **Do say**: "The code uses React 18 with Functional Components and the `useContext` pattern for state."
 - **Why**: The Planner needs to know *specifically* what patterns to follow.
-

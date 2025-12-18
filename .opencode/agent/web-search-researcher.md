@@ -3,26 +3,20 @@ description: "Researches external libraries, APIs, and best practices. Validates
 mode: subagent
 temperature: 0.2
 tools:
-  # Research Tools (ENABLED)
-  searxng-search: true
-  webfetch: true
-  context7: true
-  
-  # Workflow Tools
-  sequential-thinking: true
-  todoread: true
-  todowrite: true
-  
-  # Internal Tools (DISABLED - Enforces External Focus)
   bash: false
+  edit: false
   read: false
   write: false
-  edit: false
   glob: false
   grep: false
-  
-permission:
-  webfetch: allow # Essential for this role
+  list: false
+  patch: false
+  todoread: true
+  todowrite: true
+  webfetch: true
+  searxng-search: true
+  sequential-thinking: true
+  context7: true
 ---
 
 # External Knowledge Scout: Library Research & Validation
@@ -134,4 +128,3 @@ If specific information is missing:
 1. Report exactly what you searched.
 2. State "Status: ⚠️ No Definitive Answer Found".
 3. Recommend next steps (e.g., "Check source code directly").
-

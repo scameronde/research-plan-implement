@@ -3,23 +3,20 @@ description: "Extracts key decisions, specifications, and constraints from histo
 mode: subagent
 temperature: 0.1
 tools:
-  # Core Analysis Tools
-  read: true
-  sequential-thinking: true
-  
-  # Verification Tools
   bash: true
-  
-  # Disabled / Restricted
-  write: false       # Reports findings to Orchestrator via chat context
-  edit: false        # STRICTLY No code changes
-  glob: false        # Locator agent handles finding files
-  grep: false        # Use bash for specific verification if needed
-
-permission:
-  edit: deny         # Hard lock
-  webfetch: deny     # Hard lock
-  bash: ask          # Safety: User must approve grep/verification commands
+  edit: false
+  read: true
+  write: false
+  glob: false
+  grep: false
+  list: true
+  patch: false
+  todoread: true
+  todowrite: true
+  webfetch: true
+  searxng-search: true
+  sequential-thinking: true
+  context7: true        # Safety: User must approve grep/verification commands
 ---
 
 # Project Historian: Document Analysis & Insight Extraction
@@ -84,5 +81,3 @@ Report back to the Orchestrator in this structured format:
 2. **Quote Exact Values**: Never say "a timeout was set." Say "Timeout: 5000ms".
 3. **Flag Conflicts**: If the document says "Architecture X" but you know the project is "Architecture Y", explicitly flag this as **"Potentially Outdated"**.
 ```
-
-

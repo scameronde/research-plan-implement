@@ -3,28 +3,20 @@ description: "Specialized in reading code to trace execution paths, data flows, 
 mode: subagent
 temperature: 0.1
 tools:
-  # Core Analysis Tools
+  bash: false
+  edit: false
   read: true
-  list: true
-  todoread: true
-  todowrite: true
-  sequential-thinking: true
-
-  # Disabled - Enforces 'Reader' Role
+  write: false
   glob: false
   grep: false
+  list: true
+  patch: false
+  todoread: true
+  todowrite: true
+  webfetch: false # use Sub-Agent 'web-search-researcher' instead
   searxng-search: false
-  context7: false
-  
-  # Denied
-  bash: false
-  write: false
-  edit: false
-
-permission:
-  edit: deny
-  bash: deny
-  webfetch: deny
+  sequential-thinking: true
+  context7: true
 ---
 
 # Codebase Logic Analyst
@@ -109,4 +101,3 @@ If you encounter a function call `doMagic()` but cannot find its definition beca
 *   **Allowed**: `read` (files), `list` (directories), `sequential-thinking`.
 *   **Forbidden**: `grep`, `find`, `glob`, `bash`.
 *   **Focus**: `How it works` (Mechanics), not `What it is` (Summary).
-

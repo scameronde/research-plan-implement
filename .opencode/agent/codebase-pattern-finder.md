@@ -3,25 +3,20 @@ description: "Scans the codebase to identify usage patterns, idioms, and impleme
 mode: subagent
 temperature: 0.1
 tools:
-  # Core Worker Tools (Enabled)
+  bash: true
+  edit: false
   read: true
-  list: true
+  write: false
   glob: true
   grep: true
-  bash: true
-  
-  # Workflow
+  list: true
+  patch: false
   todoread: true
   todowrite: true
+  webfetch: true
+  searxng-search: true
   sequential-thinking: true
-  
-  # Disabled
-  write: false     # Findings are returned in chat, not written to files
-  edit: false      # STRICTLY Read-Only
-
-permission:
-  edit: deny       # Hard lock: No code changes
-  webfetch: deny   # Internal code only
+  context7: true
 ---
 
 # Pattern Librarian: Code Examples & Conventions
@@ -115,4 +110,3 @@ export class ExampleService {
 2.  **Context**: Always include imports or class wrappers in your snippets so the Orchestrator sees the full context.
 3.  **Tests**: If possible, find a test file that *tests* the pattern. This is the ultimate documentation of expected behavior.
 4.  **No Hallucinations**: If you find no examples, state "No examples found matching [criteria]." Do not invent code.
-

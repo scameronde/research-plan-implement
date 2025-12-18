@@ -3,23 +3,20 @@ description: "Specialist in file system topology. Finds file paths, directory st
 mode: subagent
 temperature: 0.1
 tools:
-  # core tools
+  bash: true
+  edit: false
   read: true
-  list: true
+  write: false
   glob: true
+  grep: true
+  list: true
+  patch: false
   todoread: true
   todowrite: true
-  
-  # execution tools
-  bash: true
-  
-  # forbidden tools (explicit)
-  edit: false
-  write: false
-
-permission:
-  edit: deny     # No code changes
-  bash: ask      # Safety check for file system scans
+  webfetch: true
+  searxng-search: true
+  sequential-thinking: true
+  context7: true
 ---
 
 # Codebase Locator: The Cartographer
@@ -101,4 +98,3 @@ Present your findings as a structured Atlas.
 1.  **Check Ignore Lists**: Always exclude `node_modules`, `.git`, `dist`, `build` from your commands.
 2.  **Be Exhaustive**: If asked for "Auth", find the Service, the Controller, the Interface, AND the Test.
 3.  **Speed**: Prefer `glob` and `ls` over `read`. Reading files is slow; listing paths is fast.
-
